@@ -1,8 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+
+use App\Http\Controllers\Frontend\WelcomeController;
+use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +18,6 @@ use App\Http\Controllers\Backend\AdminProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::middleware('admin:admin')->group(function () {
     Route::get('admin/login', [AdminController::class, 'loginForm']);
@@ -40,9 +40,19 @@ Route::put('/admin/password', [AdminProfileController::class, 'passwordUpdate'])
 
 
 Route::middleware([
-    'auth:sanctum', config('jetstream.auth_session'), 'verified'
+    'auth:sanctum,web', config('jetstream.auth_session'), 'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+Route::get('/', [WelcomeController::class, 'index']);
+
+Route::controller(UserController::class)->prefix('user')->group(function () {
+    Route::get('/logout', 'destroy')->name('user.logout');
+    Route::get('/profile/edit', 'edit')->name('user.profile.edit');
+    Route::put('/profile', 'update')->name('user.profile.update');
+    Route::get('/password/edit', 'passwordEdit')->name('user.password.edit');
+    Route::put('/password', 'passwordUpdate')->name('user.password.update');
 });

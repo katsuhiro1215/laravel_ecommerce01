@@ -1,48 +1,129 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+@extends('frontend.main_master')
 
-        <x-validation-errors class="mb-4" />
+@section('content')
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-inner">
+                <ul class="list-inline list-unstyled">
+                    <li><a href="home.html">Home</a></li>
+                    <li class='active'>Login</li>
+                </ul>
+            </div><!-- /.breadcrumb-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.breadcrumb -->
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
+    <div class="body-content">
+        <div class="container">
+            <div class="sign-in-page">
+                <div class="row">
+                    <!-- Sign-in -->
+                    <div class="col-md-6 col-sm-6 sign-in">
+                        <h4 class="">Sign in</h4>
+                        <p class="">Hello, Welcome to your account.</p>
+                        <div class="social-sign-in outer-top-xs">
+                            <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with
+                                Facebook</a>
+                            <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
+                        </div>
+                        <form method="POST" action="{{ isset($guard) ? url($guard . '/login') : route('login') }}"
+                            class="register-form outer-top-xs" role="form">
+                            @csrf
+                            <div class="form-group">
+                                <label class="info-title" for="email">{{ __('Email') }} <span>*</span></label>
+                                <input type="email" name="email" value="{{ old('email') }}"
+                                    class="form-control unicase-form-control text-input" id="email" required autofocus
+                                    autocomplete="email">
+                            </div>
+                            <div class="form-group">
+                                <label class="info-title" for="password">{{ __('Password') }} <span>*</span></label>
+                                <input type="password" name="password" class="form-control unicase-form-control text-input"
+                                    id="password" required autocomplete="current-password">
+                            </div>
+                            <div class="radio outer-xs">
+                                <label>
+                                    <input type="radio" name="remember" id="remember_me">{{ __('Remember me') }}
+                                </label>
+                                @if (Route::has('password.request'))
+                                    <a href="{{ route('password.request') }}"
+                                        class="forgot-password pull-right">{{ __('Forgot your password?') }}</a>
+                                @endif
+                            </div>
+                            <button type="submit"
+                                class="btn-upper btn btn-primary checkout-page-button">{{ __('Log in') }}</button>
+                        </form>
+                    </div>
+                    <!-- Sign-in -->
 
-        <form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
-            @csrf
+                    <!-- create a new account -->
+                    <div class="col-md-6 col-sm-6 create-new-account">
+                        <h4 class="checkout-subtitle">Create a new account</h4>
+                        <p class="text title-tag-line">Create your new account.</p>
+                        <form method="POST" action="{{ route('register') }}" class="register-form outer-top-xs"
+                            role="form">
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputEmail1">{{ __('Name') }}
+                                    <span>*</span></label>
+                                <input type="name" name="name" class="form-control unicase-form-control text-input"
+                                    id="name">
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="info-title" for="email">{{ __('Email Address') }} <span>*</span></label>
+                                <input type="email" name="email" class="form-control unicase-form-control text-input"
+                                    id="email">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="info-title" for="phone_number">{{ __('Phone Number') }}
+                                    <span>*</span></label>
+                                <input type="text" name="phone_number"
+                                    class="form-control unicase-form-control text-input" id="phone_number">
+                                @error('phone_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="info-title" for="password">{{ __('Password') }} <span>*</span></label>
+                                <input type="password" name="password" class="form-control unicase-form-control text-input"
+                                    id="password">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="info-title" for="password_confirmation">{{ __('Confirm Password') }}
+                                    <span>*</span></label>
+                                <input type="password" name="password_confirmation"
+                                    class="form-control unicase-form-control text-input" id="password_confirmation">
+                                @error('password_confirmation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
+                        </form>
 
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+                    </div>
+                    <!-- create a new account -->
+                </div><!-- /.row -->
+            </div><!-- /.sigin-in-->
+            <!-- ============================================== BRANDS CAROUSEL ============================================== -->
+            @include('frontend.inc.brand')
+            <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+        </div><!-- /.container -->
+    </div><!-- /.body-content -->
+@endsection
