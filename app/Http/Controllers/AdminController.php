@@ -9,7 +9,6 @@ use Illuminate\Routing\Pipeline;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use Laravel\Fortify\Contracts\LoginViewResponse;
-use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Http\Requests\LoginRequest;
@@ -17,6 +16,7 @@ use Laravel\Fortify\Http\Requests\LoginRequest;
 use App\Actions\Fortify\AttemptToAuthenticate;
 use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
 use App\Http\Response\LoginResponse;
+use App\Http\Response\LogoutResponse;
 
 class AdminController extends Controller
 {
@@ -40,7 +40,7 @@ class AdminController extends Controller
 
     public function loginForm()
     {
-        return view('auth.login', ['guard' => 'admin']);
+        return view('auth.admin_login', ['guard' => 'admin']);
     }
 
     /**

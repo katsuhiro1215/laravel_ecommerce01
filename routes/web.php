@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\AdminProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,13 @@ Route::middleware([
         return view('admin.index');
     })->name('dashboard')->middleware('auth:admin');
 });
+
+Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+Route::get('/admin/profile/edit', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+Route::put('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+Route::get('/admin/password/edit', [AdminProfileController::class, 'passwordEdit'])->name('admin.password.edit');
+Route::put('/admin/password', [AdminProfileController::class, 'passwordUpdate'])->name('admin.password.update');
+
 
 Route::middleware([
     'auth:sanctum', config('jetstream.auth_session'), 'verified'

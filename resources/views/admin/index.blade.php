@@ -225,7 +225,7 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="box no-shadow mb-0 bg-img rounded-0" data-overlay="5"
-                                        style="background-image: url(../images/gallery/landscape7.jpg)">
+                                        style="background-image: url({{ asset('backend/images/gallery/landscape7.jpg') }})">
                                         <div class="box-header no-border">
                                             <h4 class="box-title mb-0">
                                                 <span class="avatar avatar-lg bg-success">DK</span>
@@ -291,7 +291,7 @@
                                                 <div class="d-flex align-items-center">
                                                     <div class="flex-shrink-0 mr-20">
                                                         <div class="bg-img h-50 w-50"
-                                                            style="background-image: url(../images/gallery/creative/img-1.jpg)">
+                                                            style="background-image: url({{ asset('backend/images/gallery/creative/img-1.jpg') }})">
                                                         </div>
                                                     </div>
 

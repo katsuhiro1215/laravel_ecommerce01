@@ -32,6 +32,7 @@
     <!-- ./wrapper -->
     @include('admin.inc.script')
 
+    @yield('scripts')
 </body>
 
 </html>
