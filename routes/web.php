@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\SubSubCategoryController;
 
 use App\Http\Controllers\Frontend\WelcomeController;
 use App\Http\Controllers\Frontend\UserController;
@@ -64,5 +67,29 @@ Route::controller(BrandController::class)->prefix('brand')->group(function () {
     Route::put('/{brand}', 'update')->name('brand.update');
     Route::get('/{brand}', 'destroy')->name('brand.destroy');
 });
-// Route::resource('brand', BrandController::class)->except('index', 'show');
 
+Route::controller(CategoryController::class)->prefix('category')->group(function () {
+    Route::get('/create', 'create')->name('category.create');
+    Route::post('/', 'store')->name('category.store');
+    Route::get('/{category}/edit', 'edit')->name('category.edit');
+    Route::put('/{category}', 'update')->name('category.update');
+    Route::get('/{category}', 'destroy')->name('category.destroy');
+});
+
+Route::controller(SubCategoryController::class)->prefix('subCategory')->group(function () {
+    Route::get('/create', 'create')->name('subCategory.create');
+    Route::post('/', 'store')->name('subCategory.store');
+    Route::get('/{subCategory}/edit', 'edit')->name('subCategory.edit');
+    Route::put('/{subCategory}', 'update')->name('subCategory.update');
+    Route::get('/{subCategory}', 'destroy')->name('subCategory.destroy');
+});
+
+Route::controller(SubSubCategoryController::class)->prefix('subSubCategory')->group(function () {
+    Route::get('/create', 'create')->name('subSubCategory.create');
+    Route::get('/subCategory/ajax/{category_id}', 'GetSubCategory');
+    Route::get('/sub-subcategory/ajax/{subcategory_id}', 'GetSubSubCategory');
+    Route::post('/', 'store')->name('subSubCategory.store');
+    Route::get('/{subSubCategory}/edit', 'edit')->name('subSubCategory.edit');
+    Route::put('/{subSubCategory}', 'update')->name('subSubCategory.update');
+    Route::get('/{subSubCategory}', 'destroy')->name('subSubCategory.destroy');
+});
