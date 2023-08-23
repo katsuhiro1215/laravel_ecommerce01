@@ -38,38 +38,22 @@
                   </span>
               </a>
               <ul class="treeview-menu">
-                  <li class="{{ ($route == 'brand.create') ? 'active' : '' }}"><a href="{{ route('brand.create') }}"><i class="ti-more"></i>一覧画面</a></li>
+                  <li class="{{ ($route == 'brand.create') ? 'active' : '' }}"><a href="{{ route('brand.create') }}"><i class="ti-more"></i>一覧</a></li>
               </ul>
           </li>
 
-          <li class="treeview">
+          <li class="treeview {{ ($route == 'category') ? 'active' : '' }}">
               <a href="#">
-                  <i data-feather="mail"></i> <span>Mailbox</span>
+                  <i data-feather="message-circle"></i>
+                  <span>Category</span>
                   <span class="pull-right-container">
                       <i class="fa fa-angle-right pull-right"></i>
                   </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="mailbox_inbox.html"><i class="ti-more"></i>Inbox</a></li>
-                  <li><a href="mailbox_compose.html"><i class="ti-more"></i>Compose</a></li>
-                  <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
-              </ul>
-          </li>
-
-          <li class="treeview">
-              <a href="#">
-                  <i data-feather="file"></i>
-                  <span>Pages</span>
-                  <span class="pull-right-container">
-                      <i class="fa fa-angle-right pull-right"></i>
-                  </span>
-              </a>
-              <ul class="treeview-menu">
-                  <li><a href="profile.html"><i class="ti-more"></i>Profile</a></li>
-                  <li><a href="invoice.html"><i class="ti-more"></i>Invoice</a></li>
-                  <li><a href="gallery.html"><i class="ti-more"></i>Gallery</a></li>
-                  <li><a href="faq.html"><i class="ti-more"></i>FAQs</a></li>
-                  <li><a href="timeline.html"><i class="ti-more"></i>Timeline</a></li>
+                  <li class="{{ ($route == 'category.create') ? 'active' : '' }}"><a href="{{ route('category.create') }}"><i class="ti-more"></i>カテゴリー一覧</a></li>
+                  <li class="{{ ($route == 'subCategory.create') ? 'active' : '' }}"><a href="{{ route('subCategory.create') }}"><i class="ti-more"></i>サブカテゴリー一覧</a></li>
+                  <li class="{{ ($route == 'subSubCategory.create') ? 'active' : '' }}"><a href="{{ route('subSubCategory.create') }}"><i class="ti-more"></i>サブサブカテゴリー一覧</a></li>
               </ul>
           </li>
 
