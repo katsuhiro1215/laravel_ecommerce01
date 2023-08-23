@@ -3,10 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\BrandController;
 
 use App\Http\Controllers\Frontend\WelcomeController;
 use App\Http\Controllers\Frontend\UserController;
-use App\Http\Controllers\Frontend\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,3 +56,13 @@ Route::controller(UserController::class)->prefix('user')->group(function () {
     Route::get('/password/edit', 'passwordEdit')->name('user.password.edit');
     Route::put('/password', 'passwordUpdate')->name('user.password.update');
 });
+
+Route::controller(BrandController::class)->prefix('brand')->group(function () {
+    Route::get('/create', 'create')->name('brand.create');
+    Route::post('/', 'store')->name('brand.store');
+    Route::get('/{brand}/edit', 'edit')->name('brand.edit');
+    Route::put('/{brand}', 'update')->name('brand.update');
+    Route::get('/{brand}', 'destroy')->name('brand.destroy');
+});
+// Route::resource('brand', BrandController::class)->except('index', 'show');
+
