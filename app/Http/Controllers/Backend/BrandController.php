@@ -89,7 +89,7 @@ class BrandController extends Controller
             );
 
             return redirect()->route('brand.create')->with($notification);
-        } // end else 
+        }
     }
 
     public function destroy(Brand $brand)
