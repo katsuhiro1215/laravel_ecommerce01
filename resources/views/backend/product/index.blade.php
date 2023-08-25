@@ -62,7 +62,6 @@
                                                     <a href="{{ route('product.destroy', $product->id) }}"
                                                         class="btn btn-danger" title="Delete Data" id="delete">
                                                         <i class="fa fa-trash"></i></a>
-
                                                     @if ($product->status == 1)
                                                         <a href="{{ route('product.inactive', $product->id) }}"
                                                             class="btn btn-danger" title="Inactive Now"><i
@@ -72,7 +71,6 @@
                                                             class="btn btn-success" title="Active Now"><i
                                                                 class="fa fa-arrow-up"></i> </a>
                                                     @endif
-
                                                 </td>
                                             </tr>
                                         @endforeach
