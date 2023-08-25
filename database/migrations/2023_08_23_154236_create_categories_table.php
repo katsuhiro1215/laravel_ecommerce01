@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_ja');
             $table->string('name_en');
-            $table->string('slug_en');
+            $table->string('slug');
             $table->string('icon'); 
             $table->timestamps();
         });
