@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('sub_sub_categories', function (Blueprint $table) {
@@ -19,16 +14,11 @@ return new class extends Migration
             $table->foreignId('sub_category_id')->constrained();
             $table->string('name_ja');
             $table->string('name_en');
-            $table->string('slug_en');
+            $table->string('slug');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('sub_sub_categories');

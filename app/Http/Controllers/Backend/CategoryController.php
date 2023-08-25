@@ -21,7 +21,7 @@ class CategoryController extends Controller
         Category::create([
             'name_ja' => $request->name_ja,
             'name_en' => $request->name_en,
-            'slug_en' => strtolower(str_replace(' ', '-',$request->name_en)),
+            'slug' => strtolower(str_replace(' ', '-',$request->name_en)),
             'icon' => $request->icon,
         ]);
 
@@ -45,7 +45,7 @@ class CategoryController extends Controller
         Category::findOrFail($category_id)->update([
             'name_ja' => $request->name_ja,
             'name_en' => $request->name_en,
-            'slug_en' => strtolower(str_replace(' ', '-',$request->name_en)),
+            'slug' => strtolower(str_replace(' ', '-',$request->name_en)),
             'icon' => $request->icon,
         ]);
 

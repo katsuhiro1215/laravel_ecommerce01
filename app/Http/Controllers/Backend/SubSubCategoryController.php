@@ -40,7 +40,7 @@ class SubSubCategoryController extends Controller
             'sub_category_id' => $request->sub_category_id,
             'name_ja' => $request->name_ja,
             'name_en' => $request->name_en,
-            'slug_en' => strtolower(str_replace(' ', '-', $request->name_en)),
+            'slug' => strtolower(str_replace(' ', '-', $request->name_en)),
         ]);
 
         $notification = array(
@@ -71,7 +71,7 @@ class SubSubCategoryController extends Controller
             'sub_category_id' => $request->sub_category_id,
             'name_ja' => $request->name_ja,
             'name_en' => $request->name_en,
-            'slug_en' => strtolower(str_replace(' ', '-', $request->name_en)),
+            'slug' => strtolower(str_replace(' ', '-', $request->name_en)),
         ]);
 
         $notification = array(

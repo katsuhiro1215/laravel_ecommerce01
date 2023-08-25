@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
+use App\Http\Controllers\Backend\ProductController;
 
 use App\Http\Controllers\Frontend\WelcomeController;
 use App\Http\Controllers\Frontend\UserController;
@@ -87,9 +88,22 @@ Route::controller(SubCategoryController::class)->prefix('subCategory')->group(fu
 Route::controller(SubSubCategoryController::class)->prefix('subSubCategory')->group(function () {
     Route::get('/create', 'create')->name('subSubCategory.create');
     Route::get('/subCategory/ajax/{category_id}', 'GetSubCategory');
-    Route::get('/sub-subcategory/ajax/{subcategory_id}', 'GetSubSubCategory');
+    Route::get('/subSubCategory/ajax/{sub_category_id}', 'GetSubSubCategory');
     Route::post('/', 'store')->name('subSubCategory.store');
     Route::get('/{subSubCategory}/edit', 'edit')->name('subSubCategory.edit');
     Route::put('/{subSubCategory}', 'update')->name('subSubCategory.update');
     Route::get('/{subSubCategory}', 'destroy')->name('subSubCategory.destroy');
+});
+
+Route::controller(ProductController::class)->prefix('product')->group(function () {
+    Route::get('/', 'index')->name('product.index');
+    Route::get('/create', 'create')->name('product.create');
+    Route::post('/', 'store')->name('product.store');
+    Route::get('/{product}/edit', 'edit')->name('product.edit');
+    Route::put('/{product}', 'update')->name('product.update');
+    Route::post('/multiImage', 'multiImageUpdate')->name('multiImage.update');
+    Route::get('/multiImage/{id}', 'multiImageDestroy')->name('multiImage.destroy');
+    Route::get('/inactive/{id}', 'ProductInactive')->name('product.inactive');
+    Route::get('/active/{id}', 'ProductActive')->name('product.active');
+    Route::get('/{product}', 'destroy')->name('product.destroy');
 });

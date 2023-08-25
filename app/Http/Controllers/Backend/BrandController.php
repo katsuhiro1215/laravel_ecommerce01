@@ -32,7 +32,7 @@ class BrandController extends Controller
         Brand::insert([
             'name_ja' => $request->name_ja,
             'name_en' => $request->name_en,
-            'slug_en' => strtolower(str_replace(' ', '-', $request->name_en)),
+            'slug' => strtolower(str_replace(' ', '-', $request->name_en)),
             'brand_photo_path' => $save_url,
         ]);
 
@@ -65,7 +65,7 @@ class BrandController extends Controller
             Brand::findOrFail($brand_id)->update([
                 'name_ja' => $request->name_ja,
                 'name_en' => $request->name_en,
-                'slug_en' => strtolower(str_replace(' ', '-', $request->name_en)),
+                'slug' => strtolower(str_replace(' ', '-', $request->name_en)),
                 'brand_photo_path' => $save_url,
             ]);
 
@@ -80,7 +80,7 @@ class BrandController extends Controller
             Brand::findOrFail($brand_id)->update([
                 'name_ja' => $request->name_ja,
                 'name_en' => $request->name_en,
-                'slug_en' => strtolower(str_replace(' ', '-', $request->name_en)),
+                'slug' => strtolower(str_replace(' ', '-', $request->name_en)),
             ]);
 
             $notification = array(
