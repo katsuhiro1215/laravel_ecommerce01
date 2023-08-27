@@ -231,7 +231,7 @@
                                             <h5>割引価格 <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                 <input type="text" name="discount_price" class="form-control"
-                                                    value="{{ $product->discount_price }}" required>
+                                                    value="{{ $product->discount_price }}">
                                             </div>
                                         </div>
                                     </div>

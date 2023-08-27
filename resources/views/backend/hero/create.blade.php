@@ -27,7 +27,13 @@
                                                     <img src="{{ asset($hero->hero_photo_path) }}" alt=""
                                                         style="width: 70px; height: 40px;">
                                                 </td>
-                                                <td>{{ $hero->title }}</td>
+                                                <td>
+                                                    @if ($hero->title == null)
+                                                        <span class="badge badge-pill badge-danger"> No Title </span>
+                                                    @else
+                                                        {{ $hero->title }}
+                                                    @endif
+                                                </td>
                                                 <td>{{ $hero->description }}</td>
                                                 <td>
                                                     <a href="{{ route('hero.edit', $hero) }}" class="btn btn-info"
