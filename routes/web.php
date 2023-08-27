@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\HeroController;
 
 use App\Http\Controllers\Frontend\WelcomeController;
 use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,6 +118,17 @@ Route::controller(HeroController::class)->prefix('hero')->group(function () {
     Route::get('/{hero}/edit', 'edit')->name('hero.edit');
     Route::put('/{hero}', 'update')->name('hero.update');
     Route::get('/{hero}', 'destroy')->name('hero.destroy');
-    Route::get('/inactive/{id}', 'HeroInactive')->name('hero.inactive');
-    Route::get('/active/{id}', 'HeroActive')->name('hero.active');
+    Route::get('/inactive/{id}', 'heroInactive')->name('hero.inactive');
+    Route::get('/active/{id}', 'heroActive')->name('hero.active');
 });
+
+Route::controller(LanguageController::class)->prefix('language')->group(function () {
+    Route::get('/japanese', 'japanese')->name('language.japanese');
+    Route::get('/english', 'english')->name('language.english');
+});
+
+Route::get('/product/details/{id}/{slug}', [WelcomeController::class, 'ProductDetails']);
+
+Route::get('/product/tag/{tag}', [WelcomeController::class, 'TagWiseProduct']);
+
+Route::get('/subCategory/product/{sub_category_id}/{slug}', [WelcomeController::class, 'SubCategoryWiseProduct']);

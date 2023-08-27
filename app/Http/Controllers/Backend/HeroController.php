@@ -20,11 +20,11 @@ class HeroController extends Controller
     public function store(StoreHeroRequest $request)
     {
         $image = $request->file('hero_photo_path');
-        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-        Image::make($image)->resize(300, 300)->save('upload/hero/' . $name_gen);
-        $save_url = 'upload/hero/' . $name_gen;
+    	$name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+    	Image::make($image)->resize(870,370)->save('upload/hero/'.$name_gen);
+    	$save_url = 'upload/hero/'.$name_gen;
 
-        hero::insert([
+        hero::create([
             'title' => $request->title,
             'description' => $request->description,
             'hero_photo_path' => $save_url,
@@ -52,8 +52,8 @@ class HeroController extends Controller
 
             unlink($old_img);
             $image = $request->file('hero_photo_path');
-            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(300, 300)->save('upload/hero/' . $name_gen);
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(870,370)->save('upload/hero/'.$name_gen);
             $save_url = 'upload/hero/' . $name_gen;
 
             Hero::findOrFail($hero_id)->update([
@@ -100,7 +100,7 @@ class HeroController extends Controller
 		return redirect()->back()->with($notification);
     }
 
-    public function HeroInactive($id)
+    public function heroInactive($id)
     {
         Hero::findOrFail($id)->update(['status' => 0]);
 
@@ -112,7 +112,7 @@ class HeroController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function HeroActive($id)
+    public function heroActive($id)
     {
         Hero::findOrFail($id)->update(['status' => 1]);
 
